@@ -7,6 +7,13 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Check Branch') {
+            steps {
+                script {
+                    println("Currently running on branch: ${env.BRANCH_NAME}")
+                    }
+            }
+        }
         
         stage('Terraform Init') {
             steps {
