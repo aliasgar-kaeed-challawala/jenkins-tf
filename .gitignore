@@ -1,0 +1,21 @@
+# Crash logs
+crash.log
+
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local Terraform directories
+.terraform/
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Miscellaneous
+*.log
+*.bak
+*.backup
