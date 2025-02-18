@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -23,10 +23,7 @@ pipeline {
         
         stage('Approval') {
             when {
-                allOf {
-                    branch 'master'
-                    expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-                }
+                branch 'master'  // Only on the master branch
             }
             steps {
                 input message: 'Do you want to apply this plan?'
@@ -35,7 +32,7 @@ pipeline {
         
         stage('Terraform Apply') {
             when {
-                branch 'master'
+                branch 'master'  // Only on the master branch
             }
             steps {
                 unstash 'terraform-plan'
@@ -43,10 +40,10 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
-            cleanWs()
+            cleanWs() 
         }
     }
 }
