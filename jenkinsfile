@@ -23,7 +23,10 @@ pipeline {
         
         stage('Approval') {
             when {
-                branch 'master'
+                allOf {
+                    branch 'master'
+                    expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+                }
             }
             steps {
                 input message: 'Do you want to apply this plan?'
