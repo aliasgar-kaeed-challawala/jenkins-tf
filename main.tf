@@ -12,13 +12,6 @@ resource "aws_s3_bucket" "akc-jenkins-tf-bucket" {
     }
 }
 
-resource "aws_s3_bucket" "akc-jenkins-tf-bucket-2" {
-  bucket = "akc-jenkins-bucket-tf-2"
-    tags = {
-        createdBy        = "achallawala@presidio.com"
-        Purpose          = "Jenkins Training"
-    }
-}
 
 resource "aws_instance" "akc-jenkins-tf-instance" {
   ami             = data.aws_ami.amazon_linux_2023.id
