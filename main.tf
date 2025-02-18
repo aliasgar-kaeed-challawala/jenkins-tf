@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "akc-jenkins-tf-bucket" {
 
 resource "aws_instance" "akc-jenkins-tf-instance" {
   ami             = data.aws_ami.amazon_linux_2023.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   tags = {
     Name = "akc-jenkins-tf-instance"
   }
