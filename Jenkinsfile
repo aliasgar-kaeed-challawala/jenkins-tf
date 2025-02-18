@@ -29,15 +29,27 @@ pipeline {
         }
         
         stage('Approval') {
-            steps {
-                input message: 'Do you want to apply this plan?'
+            script{
+                if(env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'origin/main'){
+                    input message: 'Do you want to apply this plan?'
+                }
+                else{
+                    echo "Skipping approval for branch: ${env.BRANCH_NAME}"
+                }
             }
         }
+
         
         stage('Terraform Apply') {
             steps {
-                unstash 'terraform-plan'
-                sh 'terraform apply -auto-approve tfplan'
+                script {
+                    if (env.BRANCH_NAME == 'main') {
+                        unstash 'terraform-plan'
+                        sh 'terraform apply -auto-approve tfplan'
+                    } else {
+                        echo "Apply skipped: Not on main branch."
+                    }
+                }
             }
         }
     }
