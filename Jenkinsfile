@@ -35,9 +35,6 @@ pipeline {
         }
         
         stage('Terraform Apply') {
-            when {
-                branch 'main'
-            }
             steps {
                 unstash 'terraform-plan'
                 sh 'terraform apply -auto-approve tfplan'
