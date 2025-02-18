@@ -23,7 +23,7 @@ pipeline {
         
         stage('Approval') {
             when {
-                branch 'master'  // Only on the master branch
+                branch 'main'  // Only on the master branch
             }
             steps {
                 input message: 'Do you want to apply this plan?'
@@ -32,7 +32,7 @@ pipeline {
         
         stage('Terraform Apply') {
             when {
-                branch 'master'  // Only on the master branch
+                branch 'main'  // Only on the master branch
             }
             steps {
                 unstash 'terraform-plan'
